@@ -1,10 +1,10 @@
-amwa_id: IN-TEMPLATE
-url: https://specs.amwa.tv/in-template
-name: Template for AMWA Increments
+amwa_id: IN-004
+url: https://specs.amwa.tv/in-004
+name: Flow Connection Phase 2 Requirements and Gaps
 status: Work In Progress
-repo_name: in-template
-alt_repo_name:
-repo_url: https://github.com/AMWA-TV/in-template
-releases:
+repo_name: in-004
+alt_repo_name: null
+repo_url: https://github.com/AMWA-TV/in-004
+releases: null
 default_branch: main
 show_in_index: false

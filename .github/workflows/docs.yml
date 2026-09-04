@@ -25,7 +25,7 @@ jobs:
       # Target on the AMWA web server. During zensical evaluation we publish
       # under /new/ so we don't overwrite the current production site.
       SPEC_SERVER: specs.amwa.tv
-      SITE_NAME: in-template
+      SITE_NAME: in-004
     steps:
       # Always check out the ref that triggered the run (or main, for dispatch)
       # so we get the current workflow infrastructure (.github/scripts, etc.).
@@ -73,7 +73,7 @@ jobs:
       - run: zensical build --clean
 
       - name: Verify landing page content
-        run: grep -Fq "Template for AMWA Increments" site/index.html
+        run: grep -Fq "Flow Connection Phase 2 Requirements and Gaps" site/index.html
 
       - name: Install lychee
         run: sudo snap install lychee
