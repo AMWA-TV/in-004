@@ -4,12 +4,12 @@ _(c) AMWA 2026, CC Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)_
 
 # MXL Domains
 
-- An MXL domain is a folder in a tmpfs backed volume or filesystem that contains flows and grains ([MXL Architecture](https://github.com/dmf-mxl/mxl/blob/main/docs/Architecture.md)). 
+- An MXL domain is a folder in a tmpfs backed volume or filesystem that contains flows and grains (see [MXL Architecture](https://github.com/dmf-mxl/mxl/blob/main/docs/Architecture.md)). 
 - Multiple MXL domains can co-exist on the same host but each MXL domain exists only on one host (because it is a unique folder in the individual file system. The same path could exist on another host, but it would still be a different domain). 
 - One or more MXL domains on a host can be mapped into the containers that host the media functions during deployment. 
 - The path where the MXL domain is mapped need not be the same across different media function containers.
 - To be able to uniquely identify a domain, each domain contains a file “domain_def.json” (see AMWA BCP-007-03: NMOS With MXL | bcp-007-03) which needs to be created by the entity creating the MXL Domain (folder).
-- To be able to uniquely identify a domain, each domain contains a file “domain\_def.json” (see [AMWA BCP-007-03: NMOS With MXL](https://specs.amwa.tv/bcp-007-03/branches/v1.0-dev/docs/NMOS-With-MXL.html)) which needs to be created by the entity creating the MXL Domain (folder).
+- To be able to uniquely identify a domain, each domain contains a file “domain\_def.json” (see [AMWA BCP-007-03: NMOS With MXL](https://specs.amwa.tv/bcp-007-03/)) which needs to be created by the entity creating the MXL Domain (folder).
 
 ## Usage
 
@@ -41,7 +41,7 @@ _(c) AMWA 2026, CC Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)_
 
 ## Connecting and Disconnecting Flows
 
-- NMOS IS-05 ([AMWA BCP-007-03: NMOS With MXL](https://specs.amwa.tv/bcp-007-03/branches/v1.0-dev/docs/NMOS-With-MXL.html) ) or other protocols following the flow connection API requirements specification can be used to connect and disconnect flows at runtime.  
+- NMOS IS-05 ([AMWA BCP-007-03: NMOS With MXL](https://specs.amwa.tv/bcp-007-03/) ) or other protocols following the flow connection API requirements specification can be used to connect and disconnect flows at runtime.  
 - To be able to create DMFs with only static connections that do not require a separate realtime control system, media functions should provide a method to load a configuration file with the following yaml syntax when the container is deployed. 
 
 ```yaml 
