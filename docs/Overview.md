@@ -16,8 +16,8 @@ _(c) AMWA 2026, CC Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)_
 - It is recommended to keep the MXL domain structure as simple as possible.
 - One MXL domain per host is a good starting point, if it meets the requirements.
 - Multiple MXL domains can be used for grouping flows for access control, e.g.  
-  - Flows internal to a PCR in one MXL domain, flows external in another MXL domain. 
-  - Different MXL domains for different productions.
+    - Flows internal to a PCR in one MXL domain, flows external in another MXL domain.
+    - Different MXL domains for different productions.
 - Access control can be enforced by mapping only those MXL domains into a container that the media function needs access to or by means of UNIX file system permissions which give more granular control. 
 
 ## Realm
@@ -27,14 +27,14 @@ _(c) AMWA 2026, CC Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)_
 # MXL Flows
 
 - Media functions may need to create additional or new flows during runtime for a variety of reasons:  
-  - Reconfiguration  
-  - Change of input signal (for a gateway media function)
+    - Reconfiguration
+    - Change of input signal (for a gateway media function)
 
   If that happens, the orchestration/control system should be notified of the new flows.
 
 - If the technical parameters of a flow change, the existing flow needs to be removed and a new flow (with a different flowID) needs to be created. If that is the case, the Media Function should notify the orchestration/control system that the writer is now writing a different flowID so that it can decide on the necessary actions:  
-  - inform the readers that were reading the original flow to now read the new flow  
-  - change the setup of the replication to now replicate the new flow instead of the original flow  
+    - inform the readers that were reading the original flow to now read the new flow
+    - change the setup of the replication to now replicate the new flow instead of the original flow
 - When a writer shuts down, it needs to remove the flow folder and all its contents from the file system. Readers need to be able to cope with flows disappearing.  
 - To prevent writers from deleting data that has not been read yet by readers downstream, they wait for at least one length of the ring buffer after having written the last data before shutting down and deleting the ring buffer.  
 - The MXL SDK provides a function to clean the filesystem of any flow directories left over from writers that have not exited gracefully. This function needs to be called either periodically (e.g. a cron job) or when the need arises (e.g. through a watchdog) depending on the requirements of the concrete system.
@@ -101,15 +101,15 @@ Replication designates the process of copying the flow data from one domain to a
 ## Monitoring
 
 - A media function should provide active notifications of the following states for readers:  
-  - Grain cannot be decoded  
-  - Grain cannot be read  
-  - Grain is available (in time)  
+    - Grain cannot be decoded
+    - Grain cannot be read
+    - Grain is available (in time)
 - A media function should provide active notifications of the following states for writers:  
-  - Still to be discussed  
+    - Still to be discussed
 - Protocols a media function could use to provide those notifications could be:  
-  - NMOS IS-12  
-  - OpenTelemetry  
-  - ST 2138
+    - NMOS IS-12
+    - OpenTelemetry
+    - ST 2138
 
 # Example
 
