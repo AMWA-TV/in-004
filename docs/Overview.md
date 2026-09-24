@@ -8,7 +8,6 @@ _(c) AMWA 2026, CC Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)_
 - Multiple MXL domains can co-exist on the same host but each MXL domain exists only on one host (because it is a unique folder in the individual file system. The same path could exist on another host, but it would still be a different domain). 
 - One or more MXL domains on a host can be mapped into the containers that host the media functions during deployment. 
 - The path where the MXL domain is mapped need not be the same across different media function containers.
-- To be able to uniquely identify a domain, each domain contains a file “domain_def.json” (see AMWA BCP-007-03: NMOS With MXL | bcp-007-03) which needs to be created by the entity creating the MXL Domain (folder).
 - To be able to uniquely identify a domain, each domain contains a file “domain\_def.json” (see [AMWA BCP-007-03: NMOS With MXL](https://specs.amwa.tv/bcp-007-03/)) which needs to be created by the entity creating the MXL Domain (folder).
 
 ## Usage
