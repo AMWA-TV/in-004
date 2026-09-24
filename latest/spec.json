@@ -1,0 +1,25 @@
+{
+  "amwa_id": "IN-004",
+  "url": "https://specs.amwa.tv/in-004",
+  "name": "Flow Connection Phase 2 Requirements and Gaps",
+  "status": "Work In Progress",
+  "repo_name": "in-004",
+  "alt_repo_name": null,
+  "repo_url": "https://github.com/AMWA-TV/in-004",
+  "releases": null,
+  "default_branch": "main",
+  "show_in_index": false,
+  "intro": {
+    "what_does_it_do": [
+      "Defines the functional and non-functional requirements for a control API that manages [MXL](https://dmf-mxl.github.io/mxl/) Readers and Writers in a DMF environment.",
+      "Builds on [IN-001](https://specs.amwa.tv/in-001/)",
+      "Identifies gaps for further work"
+    ],
+    "why_does_it_matter": [
+      "MXL does not define a control API, so documenting requirements will help promote interoperability."
+    ],
+    "how_does_it_work": [
+      "Gives requirements for setting paramters and querying status of MXL Writers and Readers."
+    ]
+  }
+}
