@@ -101,20 +101,22 @@ Replication designates the process of copying the flow data from one domain to a
 
 (Concentrating particularly on writers and readers rather than network issues etc.)
 
-Provide monitoring of
+Provide monitoring of:
+
 - Media function writers
 - Media function readers
 - Replication
 
 Notification of errors including:
+
 - Cannot access the required domain 
 - Cannot access the required flow  
 - For readers:  
     - Grain/samples not available yet (as per MXL_ERR_OUT_OF_RANGE_TOO_EARLY)
     - Grain/samples read too late (as per MXL_ERR_OUT_OF_RANGE_TOO_LATE)
-    - Grain/samples available but cannot be read
-          - Permission error
-          - Other
+    - Grain/samples available but cannot be read:
+        - Permission error
+        - Other
     - Grain/samples available but wrong (e.g. wrong format, resolution, rate, illegal values etc.)
 - For writers:  
     - Nothing available in time to write
@@ -124,7 +126,8 @@ Notification of errors including:
         - Out of space
         - Other
 
-Protocols a media function could use to provide those notifications could be:  
+Protocols a media function could use to provide those notifications could be:
+
 - NMOS IS-12
 - OpenTelemetry
 - ST 2138
