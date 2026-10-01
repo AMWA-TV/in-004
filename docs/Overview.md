@@ -106,7 +106,7 @@ Provide monitoring of
 - Media function readers
 - Replication
 
-Report on errors including:
+Notification of errors including:
 - Cannot access the required domain 
 - Cannot access the required flow  
 - For readers:  
@@ -125,9 +125,13 @@ Report on errors including:
         - Other
 
 Protocols a media function could use to provide those notifications could be:  
-    - NMOS IS-12
-    - OpenTelemetry
-    - ST 2138
+- NMOS IS-12
+- OpenTelemetry
+- ST 2138
+
+Counters for the errors above, and also correct operation (e.g. correctly sent/received Grains)
+
+TBD: which are mandatory and optional?
 
 # Example
 
