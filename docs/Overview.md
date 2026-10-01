@@ -99,13 +99,32 @@ Replication designates the process of copying the flow data from one domain to a
 
 ## Monitoring
 
-- A media function should provide active notifications of the following states for readers:  
-    - Grain cannot be decoded
-    - Grain cannot be read
-    - Grain is available (in time)
-- A media function should provide active notifications of the following states for writers:  
-    - Still to be discussed
-- Protocols a media function could use to provide those notifications could be:  
+(Concentrating particularly on writers and readers rather than network issues etc.)
+
+Provide monitoring of
+- Media function writers
+- Media function readers
+- Replication
+
+Report on errors including:
+- Cannot access the required domain 
+- Cannot access the required flow  
+- For readers:  
+    - Grain/samples not available yet (as per MXL_ERR_OUT_OF_RANGE_TOO_EARLY)
+    - Grain/samples read too late (as per MXL_ERR_OUT_OF_RANGE_TOO_LATE)
+    - Grain/samples available but cannot be read
+          - Permission error
+          - Other
+    - Grain/samples available but wrong (e.g. wrong format, resolution, rate, illegal values etc.)
+- For writers:  
+    - Nothing available in time to write
+    - Incorrect input (e.g. wrong format, resolution, rate, illegal values etc.)
+    - Input Grain/samples available and correct but cannot be written to buffer
+        - Permission error
+        - Out of space
+        - Other
+
+Protocols a media function could use to provide those notifications could be:  
     - NMOS IS-12
     - OpenTelemetry
     - ST 2138
