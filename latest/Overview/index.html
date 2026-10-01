@@ -512,31 +512,45 @@
 </ul>
 <h2 id="monitoring">Monitoring</h2>
 <p>(Concentrating particularly on writers and readers rather than network issues etc.)</p>
-<p>Provide monitoring of
-- Media function writers
-- Media function readers
-- Replication</p>
-<p>Notification of errors including:
-- Cannot access the required domain 
-- Cannot access the required flow<br />
-- For readers:<br />
-    - Grain/samples not available yet (as per MXL_ERR_OUT_OF_RANGE_TOO_EARLY)
-    - Grain/samples read too late (as per MXL_ERR_OUT_OF_RANGE_TOO_LATE)
-    - Grain/samples available but cannot be read
-          - Permission error
-          - Other
-    - Grain/samples available but wrong (e.g. wrong format, resolution, rate, illegal values etc.)
-- For writers:<br />
-    - Nothing available in time to write
-    - Incorrect input (e.g. wrong format, resolution, rate, illegal values etc.)
-    - Input Grain/samples available and correct but cannot be written to buffer
-        - Permission error
-        - Out of space
-        - Other</p>
-<p>Protocols a media function could use to provide those notifications could be:<br />
-- NMOS IS-12
-- OpenTelemetry
-- ST 2138</p>
+<p>Provide monitoring of:</p>
+<ul>
+<li>Media function writers</li>
+<li>Media function readers</li>
+<li>Replication</li>
+</ul>
+<p>Notification of errors including:</p>
+<ul>
+<li>Cannot access the required domain </li>
+<li>Cannot access the required flow  </li>
+<li>For readers:  <ul>
+<li>Grain/samples not available yet (as per MXL_ERR_OUT_OF_RANGE_TOO_EARLY)</li>
+<li>Grain/samples read too late (as per MXL_ERR_OUT_OF_RANGE_TOO_LATE)</li>
+<li>Grain/samples available but cannot be read:<ul>
+<li>Permission error</li>
+<li>Other</li>
+</ul>
+</li>
+<li>Grain/samples available but wrong (e.g. wrong format, resolution, rate, illegal values etc.)</li>
+</ul>
+</li>
+<li>For writers:  <ul>
+<li>Nothing available in time to write</li>
+<li>Incorrect input (e.g. wrong format, resolution, rate, illegal values etc.)</li>
+<li>Input Grain/samples available and correct but cannot be written to buffer<ul>
+<li>Permission error</li>
+<li>Out of space</li>
+<li>Other</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Protocols a media function could use to provide those notifications could be:</p>
+<ul>
+<li>NMOS IS-12</li>
+<li>OpenTelemetry</li>
+<li>ST 2138</li>
+</ul>
 <p>Counters for the errors above, and also correct operation (e.g. correctly sent/received Grains)</p>
 <p>TBD: which are mandatory and optional?</p>
 <h1 id="example">Example</h1>
