@@ -134,6 +134,10 @@ Protocols a media function could use to provide those notifications could be:
 
 Counters for the errors above, and also correct operation (e.g. correctly sent/received Grains)
 
+Media functions provide measurement of latency and jitter. 
+The current MXL SDK does not provide this information directly but grain timestamps and the mxl-info tool in MXL SDK will help.
+TBD: we need a documented and common method of calculating this.
+
 TBD: which are mandatory and optional?
 
 # Example
