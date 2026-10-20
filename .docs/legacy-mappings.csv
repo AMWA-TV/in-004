@@ -1,0 +1,11 @@
+legacy_url,legacy_status,target_url,target_status_current,mapping_class,legacy_content_type,legacy_location,target_content_type,target_effective_url
+https://specs.amwa.tv/in-004,200,https://specs.amwa.tv/in-004/,200,confirmed-inventory,text/html,https://specs.amwa.tv/new/in-004/latest/,text/html,https://specs.amwa.tv/in-004/
+https://specs.amwa.tv/in-004/,200,https://specs.amwa.tv/in-004/,200,confirmed-inventory,text/html,https://specs.amwa.tv/new/in-004/latest/,text/html,https://specs.amwa.tv/in-004/
+https://specs.amwa.tv/in-004/Overview/,200,,,no-target-rule,text/html,https://specs.amwa.tv/new/in-004/latest/Overview/,,
+https://specs.amwa.tv/in-004/assets/images/favicon.png,200,,,no-target-rule,image/png,https://specs.amwa.tv/new/in-004/latest/assets/images/favicon.png,,
+https://specs.amwa.tv/in-004/assets/javascripts/bundle.a2388154.min.js,200,,,no-target-rule,text/javascript,https://specs.amwa.tv/new/in-004/latest/assets/javascripts/bundle.a2388154.min.js,,
+https://specs.amwa.tv/in-004/assets/stylesheets/modern/main.e442bf79.min.css,200,,,no-target-rule,text/css,https://specs.amwa.tv/new/in-004/latest/assets/stylesheets/modern/main.e442bf79.min.css,,
+https://specs.amwa.tv/in-004/assets/stylesheets/modern/palette.b60ce83d.min.css,200,,,no-target-rule,text/css,https://specs.amwa.tv/new/in-004/latest/assets/stylesheets/modern/palette.b60ce83d.min.css,,
+https://specs.amwa.tv/in-004/images/,200,,,no-target-rule,text/html,https://specs.amwa.tv/new/in-004/latest/images/,,
+https://specs.amwa.tv/in-004/javascripts/amwa-branding.js,200,,,no-target-rule,text/javascript,https://specs.amwa.tv/new/in-004/latest/javascripts/amwa-branding.js,,
+https://specs.amwa.tv/in-004/stylesheets/amwa-branding.css,200,,,no-target-rule,text/css,https://specs.amwa.tv/new/in-004/latest/stylesheets/amwa-branding.css,,
