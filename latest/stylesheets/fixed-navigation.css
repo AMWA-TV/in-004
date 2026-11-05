@@ -1,0 +1,59 @@
+/* Keep only the Previous/Next navigation visible while scrolling. */
+.md-footer__inner {
+  background: var(--md-footer-bg-color, var(--md-default-bg-color));
+  bottom: 0;
+  box-shadow: 0 -0.1rem 0.4rem #0003;
+  left: 0;
+  margin-left: 0;
+  margin-right: 0;
+  max-width: none;
+  padding-bottom: calc(0.1rem + env(safe-area-inset-bottom, 0px));
+  padding-left: max(0.2rem, env(safe-area-inset-left, 0px));
+  padding-right: max(0.2rem, env(safe-area-inset-right, 0px));
+  padding-top: 0;
+  position: fixed;
+  right: 0;
+  width: 100%;
+  z-index: 3;
+}
+
+.md-footer__link {
+  align-items: center;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding: 0.15rem 0.2rem;
+}
+
+.md-footer__title {
+  margin-bottom: 0;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.md-footer__button {
+  margin: 0;
+  padding: 0.15rem;
+}
+
+/* Keep the normal copyright footer above the fixed Previous/Next bar. */
+.md-footer-meta {
+  padding-bottom: 3.5rem;
+}
+
+.md-content__inner {
+  padding-bottom: 4rem;
+}
+
+@media print {
+  .md-footer__inner {
+    position: static;
+  }
+
+  .md-content__inner {
+    padding-bottom: 0;
+  }
+
+  .md-footer-meta {
+    padding-bottom: 0;
+  }
+}
