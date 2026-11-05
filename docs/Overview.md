@@ -109,22 +109,31 @@ Provide monitoring of:
 
 Notification of errors including:
 
-- Cannot access the required domain 
-- Cannot access the required flow  
-- For readers:  
-    - Grain/samples not available yet (as per MXL_ERR_OUT_OF_RANGE_TOO_EARLY)
-    - Grain/samples read too late (as per MXL_ERR_OUT_OF_RANGE_TOO_LATE)
-    - Grain/samples available but cannot be read:
-        - Permission error
-        - Other
-    - Grain/samples available but wrong (e.g. wrong format, resolution, rate, illegal values etc.)
+- For readers:
+    - Access Status
+        - Cannot access the required domain
+        - Cannot access the required flow
+    - Read Status  
+        - Grain/samples not available yet (as per MXL_ERR_OUT_OF_RANGE_TOO_EARLY)
+        - Grain/samples read too late (as per MXL_ERR_OUT_OF_RANGE_TOO_LATE)
+        - Grain/samples available but cannot be read:
+            - Permission error
+            - Other
+    - Essence Status
+        - Grain/samples available but wrong (e.g. wrong format, resolution, rate, illegal values etc.)
+
 - For writers:  
-    - Nothing available in time to write
-    - Incorrect input (e.g. wrong format, resolution, rate, illegal values etc.)
-    - Input Grain/samples available and correct but cannot be written to buffer
-        - Permission error
-        - Out of space
-        - Other
+    - Access Status
+        - Cannot access the required domain
+        - Cannot access the required flow
+    - Write Status
+        - Input Grain/samples available and correct but cannot be written to buffer
+            - Permission error
+            - Out of space
+            - Other
+    - Essence Status
+        - Nothing available in time to write
+        - Incorrect input (e.g. wrong format, resolution, rate, illegal values etc.)
 
 Protocols a media function could use to provide those notifications could be:
 
@@ -132,13 +141,15 @@ Protocols a media function could use to provide those notifications could be:
 - OpenTelemetry
 - ST 2138
 
-Counters for the errors above, and also correct operation (e.g. correctly sent/received Grains)
+Counters for the errors above, and also correct operation (e.g. correctly sent/received Grains).
+
+If monitoring is supported, all the above statuses are mandatory. Counters are optional.
+
+It is optional to support additional, more in-depth monitoring, for example via telemetry.
 
 Media functions provide measurement of latency and jitter. 
 The current MXL SDK does not provide this information directly but grain timestamps and the mxl-info tool in MXL SDK will help.
 TBD: we need a documented and common method of calculating this.
-
-TBD: which are mandatory and optional?
 
 # Example
 
