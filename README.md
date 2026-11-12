@@ -1,4 +1,4 @@
-# \[Work In Progress\] AMWA IN-004: Flow Connection Phase 2 Requirements and Gaps
+# \[Work In Progress\] AMWA IN-004: Flow Orchestration and Monitoring Requirements
 
 [![Lint Status](https://github.com/AMWA-TV/in-004/actions/workflows/lint.yml/badge.svg)](https://github.com/AMWA-TV/in-004/actions/workflows/lint.yml)
 [![Zensical Render Status](https://github.com/AMWA-TV/in-004/actions/workflows/docs.yml/badge.svg)](https://github.com/AMWA-TV/in-004/actions/workflows/docs.yml)

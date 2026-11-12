@@ -18,7 +18,7 @@ site_name = "IN-004"
 # meaningful description of the site content for use by search engines.
 #
 # Read more: https://zensical.org/docs/setup/basics/#site_description
-site_description = "AMWA IN-004: Flow Connection Phase 2 Requirements and Gaps"
+site_description = "AMWA IN-004: Flow Orchestration and Monitoring Requirements"
 
 # The site_author attribute. This is used in the HTML head element.
 #
