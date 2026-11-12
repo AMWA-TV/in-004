@@ -23,6 +23,8 @@ _(c) AMWA 2026, CC Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)_
 
 - Since MXLDomains cannot span more than one host, an orchestration/control system may chose to establish a Realm that is a logical grouping of MXLDomain(s) (e.g. with similar access rights) possibly on different hosts. This does not imply replication of all the flows in the MXLDomain.
 
+_insert diagram_
+
 # MXL Flows
 
 - Media functions may need to create additional or new flows during runtime for a variety of reasons:  
@@ -72,6 +74,15 @@ receivers:
       - mxl_domain_id: auto  
         mxl_flow_id: a5c377de-ae50-4e72-a1ab-b715fb429b89
 ```
+
+## Behaviour on Stopping and Restarting MXLWriters and MXLReaders
+
+This adds to behaviour described in IN-001:
+
+- **When instructed to stop, an MXLWriter must stop writing data immediately and must stop advancing the head index. The flow folder must not be deleted.**
+- When instructed to stop, an MXLReader must stop reading data immediately.
+- When instructed to (re-)start, an MXLReader must start reading according to the guidance in the the MXL documentation.
+- When instructed to (re-)start, an MXLWriter must start writing according to the guidance in the the MXL documentation.
 
 ## Replication
 
@@ -151,7 +162,12 @@ Media functions provide measurement of latency and jitter.
 The current MXL SDK does not provide this information directly but grain timestamps and the mxl-info tool in MXL SDK will help.
 TBD: we need a documented and common method of calculating this.
 
-# Example
+# Examples
 
-To be added later.
+The following diagrams show examples of:
+- A connection sequence
+- A monitoring sequence
+
+_insert_diagrams_
+
 
