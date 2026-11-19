@@ -84,6 +84,30 @@ This adds to behaviour described in IN-001:
 - When instructed to (re-)start, an MXLReader must start reading according to the guidance in the the MXL documentation.
 - When instructed to (re-)start, an MXLWriter must start writing according to the guidance in the the MXL documentation.
 
+```mermaid
+flowchart TB
+    subgraph Writer["MXLWriter"]
+        direction LR
+        WRun["Running<br/>Writing data and advancing head"]
+        WStop["Stopped<br/>No writing<br/>Head index not advancing<br/>Flow folder retained"]
+        WEnd["Shut down<br/>Flow folder removed"]
+
+        WRun -->|Stop| WStop
+        WStop -->|Restart| WRun
+        WRun -->|Shut down after buffer drain| WEnd
+        WStop -->|Shut down| WEnd
+    end
+
+    subgraph Reader["MXLReader"]
+        direction TB
+        RRun["Running<br/>Reading grains / samples"]
+        RStop["Stopped<br/>No reading"]
+
+        RRun -->|Stop| RStop
+        RStop -->|Restart| RRun
+    end
+```
+
 ## Replication
 
 Replication designates the process of copying the flow data from one domain to another.
