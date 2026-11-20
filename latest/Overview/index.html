@@ -507,6 +507,27 @@ flowchart TB
 <li>When instructed to (re-)start, an MXLReader must start reading according to the guidance in the the MXL documentation.</li>
 <li>When instructed to (re-)start, an MXLWriter must start writing according to the guidance in the the MXL documentation.</li>
 </ul>
+<pre class="mermaid"><code>flowchart TB
+    subgraph Writer["MXLWriter"]
+        direction LR
+        WRun["Running&lt;br/&gt;Writing data and advancing head"]
+        WStop["Stopped&lt;br/&gt;No writing&lt;br/&gt;Head index not advancing&lt;br/&gt;Flow folder retained"]
+        WEnd["Shut down&lt;br/&gt;Flow folder removed"]
+
+        WRun --&gt;|Stop| WStop
+        WStop --&gt;|Restart| WRun
+        WRun --&gt;|Shut down after buffer drain| WEnd
+        WStop --&gt;|Shut down| WEnd
+    end
+
+    subgraph Reader["MXLReader"]
+        direction TB
+        RRun["Running&lt;br/&gt;Reading grains / samples"]
+        RStop["Stopped&lt;br/&gt;No reading"]
+
+        RRun --&gt;|Stop| RStop
+        RStop --&gt;|Restart| RRun
+    end</code></pre>
 <h2 id="replication">Replication</h2>
 <p>Replication designates the process of copying the flow data from one domain to another.</p>
 <ul>
