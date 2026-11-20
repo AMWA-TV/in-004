@@ -19,11 +19,55 @@ _(c) AMWA 2026, CC Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)_
     - Different MXL domains for different productions.
 - Access control can be enforced by mapping only those MXL domains into a container that the media function needs access to or by means of UNIX file system permissions which give more granular control. 
 
-## Realm
+## Domain Group
 
-- Since MXLDomains cannot span more than one host, an orchestration/control system may chose to establish a Realm that is a logical grouping of MXLDomain(s) (e.g. with similar access rights) possibly on different hosts. This does not imply replication of all the flows in the MXLDomain.
+- Since MXLDomains cannot span more than one host, an orchestration/control system may chose to establish a Domain Group that is a logical grouping of MXLDomain(s) (e.g. with similar access rights) possibly on different hosts. This does not imply replication of all the flows in the MXLDomain.
 
-See the [MXL Domains and Realm diagram](#mxl-domains-and-realm) at the end of this document.
+```mermaid
+%% IN-004 "MXL Domains" and "Domain Group"
+%% Mermaid subgraphs can't overlap, so the domain group is drawn as a node linked to its member domains, not a box.
+%% Host 2's pcr domain and flows A and B are the ones used in connect-sequence and monitoring-sequence.
+flowchart TB
+    subgraph host1 [Host 1]
+        mf1["Media function<br/>container"]
+        subgraph h1pcr [MXL domain: pcr]
+            h1def["domain_def.json"]
+        end
+        subgraph h1gal [MXL domain: gallery]
+            h1gdef["domain_def.json"]
+        end
+    end
+
+    subgraph host2 [Host 2]
+        mf2["Media function<br/>container"]
+        subgraph h2pcr [MXL domain: pcr]
+            h2def["domain_def.json"]
+            fa[("flow A")]
+            fb[("flow B")]
+        end
+    end
+
+    domainGroup["Domain Group: logical grouping of MXL domains"]
+
+    mf1 -->|mapped| h1pcr
+    mf2 -->|mapped| h2pcr
+    h1pcr -.- domainGroup
+    h2pcr -.- domainGroup
+
+    classDef host fill:#F4F3EE,stroke:#A8A69C,color:#2C2C2A
+    classDef domain fill:#FFFFFF,stroke:#0F6E56,stroke-width:2px,color:#085041
+    classDef inDomainGroup fill:#EEEDFE,stroke:#534AB7,stroke-width:2px,stroke-dasharray:5 5,color:#3C3489
+    classDef mf fill:#E1F5EE,stroke:#0F6E56,stroke-width:2px,color:#085041
+    classDef file fill:#FFFFFF,stroke:#B4B2A9,color:#444441
+    classDef flow fill:#FFFFFF,stroke:#534AB7,color:#3C3489
+    class host1,host2 host
+    class h1gal domain
+    class h1pcr,h2pcr,domainGroup inDomainGroup
+    class mf1,mf2 mf
+    class h1def,h1gdef,h2def file
+    class fa,fb flow
+    linkStyle 2,3 stroke:#534AB7,stroke-width:2px
+```
 
 # MXL Flows
 
@@ -164,59 +208,9 @@ TBD: we need a documented and common method of calculating this.
 
 # Examples
 
-The following diagrams show examples of:
-- A connection sequence
-- A monitoring sequence
+The following sequence diagrams show examples of Flow Connection and Monitoring.
 
-## MXL Domains and Realm
-
-```mermaid
-%% IN-004 "MXL Domains" and "Realm"
-%% Mermaid subgraphs can't overlap, so the realm is drawn as a node linked to its member domains, not a box.
-%% Host 2's pcr domain and flows A and B are the ones used in connect-sequence and monitoring-sequence.
-flowchart TB
-    subgraph host1 [Host 1]
-        mf1["Media function<br/>container"]
-        subgraph h1pcr [MXL domain: pcr]
-            h1def["domain_def.json"]
-        end
-        subgraph h1gal [MXL domain: gallery]
-            h1gdef["domain_def.json"]
-        end
-    end
-
-    subgraph host2 [Host 2]
-        mf2["Media function<br/>container"]
-        subgraph h2pcr [MXL domain: pcr]
-            h2def["domain_def.json"]
-            fa[("flow A")]
-            fb[("flow B")]
-        end
-    end
-
-    realm["Realm: logical grouping of MXL domains"]
-
-    mf1 -->|mapped| h1pcr
-    mf2 -->|mapped| h2pcr
-    h1pcr -.- realm
-    h2pcr -.- realm
-
-    classDef host fill:#F4F3EE,stroke:#A8A69C,color:#2C2C2A
-    classDef domain fill:#FFFFFF,stroke:#0F6E56,stroke-width:2px,color:#085041
-    classDef inRealm fill:#EEEDFE,stroke:#534AB7,stroke-width:2px,stroke-dasharray:5 5,color:#3C3489
-    classDef mf fill:#E1F5EE,stroke:#0F6E56,stroke-width:2px,color:#085041
-    classDef file fill:#FFFFFF,stroke:#B4B2A9,color:#444441
-    classDef flow fill:#FFFFFF,stroke:#534AB7,color:#3C3489
-    class host1,host2 host
-    class h1gal domain
-    class h1pcr,h2pcr,realm inRealm
-    class mf1,mf2 mf
-    class h1def,h1gdef,h2def file
-    class fa,fb flow
-    linkStyle 2,3 stroke:#534AB7,stroke-width:2px
-```
-
-## Flow Connection Sequence
+## Flow Connection
 
 ```mermaid
 %% IN-004 "Connecting and Disconnecting Flows" and "MXL Flows"
@@ -260,7 +254,7 @@ sequenceDiagram
     end
 ```
 
-## Monitoring Sequence
+## Monitoring
 
 ```mermaid
 %% IN-004 "Monitoring", reader side (same reader, domain and flow as connect-sequence)
