@@ -6,10 +6,6 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="AMWA IN-004: Flow Connection Phase 2 Requirements and Gaps">
-      
-      
-        <meta name="author" content="AMWA">
       
       
         <link rel="canonical" href="https://specs.amwa.tv/in-004/latest/latest/images/">
@@ -24,23 +20,18 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="zensical-0.1.0">
+      <meta name="generator" content="zensical-0.1.2">
     
     
       
-        <title>README - IN-004</title>
+        <title>README - [Work In Progress] AMWA IN-004: Flow Orchestration and Monitoring Requirements</title>
       
     
     
       
         
       
-      <link rel="stylesheet" href="../assets/stylesheets/modern/main.4ab2de0c.min.css">
-      
-        
-          
-        
-        <link rel="stylesheet" href="../assets/stylesheets/modern/palette.b60ce83d.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.ebb7f775.min.css">
       
       
 
@@ -72,14 +63,7 @@
   </head>
   
   
-    
-    
-      
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -101,7 +85,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="./.." title="IN-004" class="md-header__button md-logo" aria-label="IN-004" data-md-component="logo">
+    <a href="./.." title="[Work In Progress] AMWA IN-004: Flow Orchestration and Monitoring Requirements" class="md-header__button md-logo" aria-label="[Work In Progress] AMWA IN-004: Flow Orchestration and Monitoring Requirements" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
@@ -116,7 +100,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            IN-004
+            [Work In Progress] AMWA IN-004: Flow Orchestration and Monitoring Requirements
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -128,32 +112,6 @@
         </div>
       </div>
     </div>
-    
-      
-        <form class="md-header__option" data-md-component="palette">
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
-    
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-      </label>
-    
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
-    
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
-      </label>
-    
-  
-</form>
-      
     
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
@@ -212,13 +170,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="./.." title="IN-004" class="md-nav__button md-logo" aria-label="IN-004" data-md-component="logo">
+    <a href="./.." title="[Work In Progress] AMWA IN-004: Flow Orchestration and Monitoring Requirements" class="md-nav__button md-logo" aria-label="[Work In Progress] AMWA IN-004: Flow Orchestration and Monitoring Requirements" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
 
     </a>
-    IN-004
+    [Work In Progress] AMWA IN-004: Flow Orchestration and Monitoring Requirements
   </label>
   
     <div class="md-nav__source">
@@ -249,7 +207,7 @@
   <span class="md-ellipsis">
     
   
-  [Work In Progress] AMWA IN-004: Flow Connection Phase 2 Requirements and Gaps
+  [Work In Progress] AMWA IN-004: Flow Orchestration and Monitoring Requirements
 
     
   </span>
@@ -275,7 +233,7 @@
   <span class="md-ellipsis">
     
   
-  Flow Connection Phase 2 Requirements and Gaps
+  Flow Orchestration and Monitoring Requirements
 
     
   </span>
@@ -297,30 +255,18 @@
   
     
     
-      
-        
-          
-        
-      
     
     
     
-      
-        
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <div class="md-nav__link md-nav__container">
-            <a href="././" class="md-nav__link md-nav__link--active">
-              
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -333,10 +279,57 @@
   
   
 
-            </a>
-            
-          </div>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+            <label class="md-nav__title" for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Images
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  README
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
         
       
     </li>
@@ -377,65 +370,6 @@
           
             <div class="md-content" data-md-component="content">
               
-                
-
-
-
-  
-
-
-  <nav class="md-path" aria-label="Navigation" >
-    <ol class="md-path__list">
-      
-        
-  
-  
-    <li class="md-path__item">
-      <a href="./.." class="md-path__link">
-        
-  
-  <span class="md-ellipsis">
-    [Work In Progress] AMWA IN-004: Flow Connection Phase 2 Requirements and Gaps
-  </span>
-
-      </a>
-    </li>
-  
-
-      
-      
-        
-  
-  
-    
-    
-      
-        
-          
-        
-      
-    
-    
-    
-    
-      <li class="md-path__item">
-        <a href="././" class="md-path__link">
-          
-  
-  <span class="md-ellipsis">
-    Images
-  </span>
-
-        </a>
-      </li>
-    
-  
-
-      
-    </ol>
-  </nav>
-
-              
               <article class="md-content__inner md-typeset">
                 <a id="__skip" tabindex="-1"></a>
                 
@@ -467,16 +401,8 @@
             </div>
           
           
-  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
-
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
-        
-          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-  
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
-  Back to top
-</button>
         
       </main>
       
@@ -487,7 +413,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../Overview/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Flow Connection Phase 2 Requirements and Gaps">
+          <a href="../Overview/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Flow Orchestration and Monitoring Requirements">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
@@ -497,7 +423,7 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Flow Connection Phase 2 Requirements and Gaps
+                Flow Orchestration and Monitoring Requirements
               </div>
             </div>
           </a>
@@ -535,10 +461,10 @@
       
         
         
-      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["announce.dismiss","content.code.annotate","content.code.copy","content.code.select","content.footnote.tooltips","content.tabs.link","content.tooltips","navigation.expand","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.path","navigation.sections","navigation.top","navigation.tracking","search.highlight"],"redirect":null,"search":"../assets/javascripts/workers/search.719e0d91.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["navigation.footer"],"redirect":null,"search":"../assets/javascripts/workers/search.719e0d91.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../assets/javascripts/bundle.d31f0ffa.min.js"></script>
+      <script src="../assets/javascripts/bundle.3cb411a8.min.js"></script>
       
         <script src="../javascripts/amwa-branding.js"></script>
       
