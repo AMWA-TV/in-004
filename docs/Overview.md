@@ -23,7 +23,7 @@ _(c) AMWA 2026, CC Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)_
 
 - Since MXLDomains cannot span more than one host, an orchestration/control system may chose to establish a Realm that is a logical grouping of MXLDomain(s) (e.g. with similar access rights) possibly on different hosts. This does not imply replication of all the flows in the MXLDomain.
 
-_insert diagram_
+See the [MXL Domains and Realm diagram](#mxl-domains-and-realm) at the end of this document.
 
 # MXL Flows
 
@@ -92,7 +92,7 @@ Replication designates the process of copying the flow data from one domain to a
 - Replication can be setup manually or automatically.  
 - Replication can be setup statically (at deployment-time) or dynamically (on request during runtime)  
 - Whoever sets up the replication is responsible for tearing it down when it is no longer needed (e.g. reader stops reading, writer exits, writer crashes etc.)  
-- In many cases it might be preferable to delay the tear-down of replication in case the media function comes back after a short period of time, so the process that tears down the replication should do so only after a configurable delay.
+<!--- In many cases it might be preferable to delay the tear-down of replication in case the media function comes back after a short period of time, so the process that tears down the replication should do so only after a configurable delay.-->
 
 ## Between-Host Bandwidth Management
 
@@ -168,6 +168,133 @@ The following diagrams show examples of:
 - A connection sequence
 - A monitoring sequence
 
-_insert_diagrams_
+## MXL Domains and Realm
 
+```mermaid
+%% IN-004 "MXL Domains" and "Realm"
+%% Mermaid subgraphs can't overlap, so the realm is drawn as a node linked to its member domains, not a box.
+%% Host 2's pcr domain and flows A and B are the ones used in connect-sequence and monitoring-sequence.
+flowchart TB
+    subgraph host1 [Host 1]
+        mf1["Media function<br/>container"]
+        subgraph h1pcr [MXL domain: pcr]
+            h1def["domain_def.json"]
+        end
+        subgraph h1gal [MXL domain: gallery]
+            h1gdef["domain_def.json"]
+        end
+    end
+
+    subgraph host2 [Host 2]
+        mf2["Media function<br/>container"]
+        subgraph h2pcr [MXL domain: pcr]
+            h2def["domain_def.json"]
+            fa[("flow A")]
+            fb[("flow B")]
+        end
+    end
+
+    realm["Realm: logical grouping of MXL domains"]
+
+    mf1 -->|mapped| h1pcr
+    mf2 -->|mapped| h2pcr
+    h1pcr -.- realm
+    h2pcr -.- realm
+
+    classDef host fill:#F4F3EE,stroke:#A8A69C,color:#2C2C2A
+    classDef domain fill:#FFFFFF,stroke:#0F6E56,stroke-width:2px,color:#085041
+    classDef inRealm fill:#EEEDFE,stroke:#534AB7,stroke-width:2px,stroke-dasharray:5 5,color:#3C3489
+    classDef mf fill:#E1F5EE,stroke:#0F6E56,stroke-width:2px,color:#085041
+    classDef file fill:#FFFFFF,stroke:#B4B2A9,color:#444441
+    classDef flow fill:#FFFFFF,stroke:#534AB7,color:#3C3489
+    class host1,host2 host
+    class h1gal domain
+    class h1pcr,h2pcr,realm inRealm
+    class mf1,mf2 mf
+    class h1def,h1gdef,h2def file
+    class fa,fb flow
+    linkStyle 2,3 stroke:#534AB7,stroke-width:2px
+```
+
+## Flow Connection Sequence
+
+```mermaid
+%% IN-004 "Connecting and Disconnecting Flows" and "MXL Flows"
+%% SDK calls from MXL lib/include/mxl/mxl.h and flow.h.
+sequenceDiagram
+    autonumber
+    participant oc as Orchestration /<br/>control system
+    participant wr as Writer media<br/>function
+    participant rd as Reader media<br/>function
+    participant pcr as MXL domain: pcr
+    participant fa as Flow A
+    participant fb as Flow B
+
+    rect rgb(247, 246, 242)
+        Note over oc,fb: container deployed: configuration file with static connections
+        oc->>rd: map MXL domain into the container
+        oc->>rd: configuration file (yaml): receivers, master_enable,<br/>transport_params: mxl_domain_id, mxl_flow_id = flow A
+        rd->>pcr: mxlCreateInstance(domain path)
+        rd->>fa: mxlCreateFlowReader(instance, flow A)
+        loop per grain
+            rd->>fa: mxlFlowReaderGetGrain(reader, index, timeout)
+            fa-->>rd: grain
+        end
+    end
+
+    rect rgb(238, 237, 254)
+        Note over oc,fb: technical parameters of a flow change
+        wr->>fb: create new flow (different flowID)
+        wr->>oc: notify: writer is now writing a different flowID
+        oc->>rd: IS-05 (BCP-007-03): read the new flow<br/>mxl_domain_id, mxl_flow_id = flow B
+        rd->>fa: mxlReleaseFlowReader(instance, reader)
+        rd->>fb: mxlCreateFlowReader(instance, flow B)
+        wr->>fa: remove the original flow
+        Note over rd,fa: readers need to be able to cope with flows disappearing
+    end
+
+    rect rgb(238, 237, 254)
+        Note over oc,fb: disconnect at runtime
+        oc->>rd: IS-05 (BCP-007-03): master_enable = false
+        rd->>fb: mxlReleaseFlowReader(instance, reader)
+    end
+```
+
+## Monitoring Sequence
+
+```mermaid
+%% IN-004 "Monitoring", reader side (same reader, domain and flow as connect-sequence)
+%% SDK calls and status codes from MXL lib/include/mxl/mxl.h.
+sequenceDiagram
+    participant oc as Orchestration /<br/>control system
+    participant rd as Reader media<br/>function
+    participant pcr as MXL domain: pcr
+    participant fa as Flow A
+
+    rect rgb(250, 236, 231)
+        Note over rd,fa: Access status
+        rd->>pcr: mxlCreateInstance(domain path)
+        pcr--xrd: cannot access the required domain
+        rd->>fa: mxlCreateFlowReader(instance, flow A)
+        fa--xrd: cannot access the required flow
+    end
+
+    loop per grain
+        rd->>fa: mxlFlowReaderGetGrain(reader, index, timeout)
+        alt correct operation
+            fa-->>rd: grain
+        else Read status
+            fa--xrd: grain/samples not available yet<br/>(MXL_ERR_OUT_OF_RANGE_TOO_EARLY)
+        else Read status
+            fa--xrd: grain/samples read too late<br/>(MXL_ERR_OUT_OF_RANGE_TOO_LATE)
+        else Read status
+            fa--xrd: grain/samples available but cannot be read<br/>(permission error, other)
+        end
+        rd->>rd: Essence status: grain/samples available but wrong<br/>(e.g. wrong format, resolution, rate, illegal values)
+    end
+
+    rd->>oc: notification of errors, counters, latency and jitter (calculation TBD)<br/>NMOS IS-12, OpenTelemetry or ST 2138
+
+    Note over oc,fa: provide monitoring of: media function writers, media function readers, replication
+```
 
